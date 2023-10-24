@@ -6,6 +6,8 @@ const MoviesList = () => {
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
 
+  console.log(movies);
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -18,7 +20,7 @@ const MoviesList = () => {
         });
         console.log(fetchedMovies);
 
-        setMovies(...fetchedMovies);
+        setMovies(fetchedMovies.results);
       } catch (error) {
         if (error.code !== 'ERR_CANCELED') {
           setError(true);
@@ -34,11 +36,14 @@ const MoviesList = () => {
   }, []);
 
   return (
-    <ul>
-      {movies.map(({ id, original_title }) => {
-        return <li key={id}>{original_title}</li>;
-      })}
-    </ul>
+    <div>
+      <h1>Trending movies</h1>
+      <ul>
+        {movies.map(movie => (
+          <li key={movie.id}>{movie.title}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
