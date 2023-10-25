@@ -19,12 +19,20 @@ export const fetchTrandingMovies = async (params = {}) => {
 
 // movie by ID
 
-export const fetchMoviesbyId = async (movieId, params = {}) => {
+export const fetchMoviesById = async (movieId, params = {}) => {
   const response = await axios.get(
     `/movie/${movieId}?api_key=${API_KEY}`,
     params
   );
-  const smth = response.data;
-  console.log(smth);
+  return response.data;
+};
+
+// movies for Movies page
+
+export const fetchMoviesByQuery = async (movieId, query, params = {}) => {
+  const response = await axios.get(
+    `/search/movie/?${query}api_key=${API_KEY}`,
+    params
+  );
   return response.data;
 };
