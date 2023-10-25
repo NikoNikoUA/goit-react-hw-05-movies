@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchTrandingMovies } from '../components/Api';
+import { Link } from 'react-router-dom';
 
 const MoviesList = () => {
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,6 @@ const MoviesList = () => {
         const fetchedMovies = await fetchTrandingMovies({
           signal: controller.signal,
         });
-        console.log(fetchedMovies);
 
         setMovies(fetchedMovies.results);
       } catch (error) {
@@ -39,8 +39,10 @@ const MoviesList = () => {
     <div>
       <h1>Trending movies</h1>
       <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>{movie.title}</li>
+        {movies.map(({ id, title }) => (
+          <li key={id}>
+            <Link to={`/movies/${id}`}>{title}</Link>
+          </li>
         ))}
       </ul>
     </div>

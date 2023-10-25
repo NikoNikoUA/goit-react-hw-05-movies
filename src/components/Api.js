@@ -16,3 +16,15 @@ export const fetchTrandingMovies = async (params = {}) => {
   );
   return response.data;
 };
+
+// movie by ID
+
+export const fetchMoviesbyId = async (movieId, params = {}) => {
+  const response = await axios.get(
+    `/movie/${movieId}?api_key=${API_KEY}`,
+    params
+  );
+  const smth = response.data;
+  console.log(smth);
+  return response.data;
+};
