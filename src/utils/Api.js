@@ -29,9 +29,9 @@ export const fetchMoviesById = async (movieId, params = {}) => {
 
 // movies for Movies page
 
-export const fetchMoviesByQuery = async (movieId, value, params = {}) => {
+export const fetchMoviesByQuery = async (value, params = {}) => {
   const response = await axios.get(
-    `/search/movie/?${value}api_key=${API_KEY}`,
+    `/search/movie?query=${value}&api_key=${API_KEY}`,
     params
   );
   return response.data;

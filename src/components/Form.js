@@ -1,18 +1,27 @@
+import { ToastContainer, toast } from 'react-toastify';
+
 export const Form = ({ value, onChange, onSubmit }) => {
   const onInputChange = event => {
-    const value = event.target.value;
-    onChange(value);
+    const initialValue = event.target.value;
+    if (!initialValue) {
+      toast.error('Please enter something!');
+      return;
+    }
+    onChange(initialValue);
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <input
         type="text"
         value={value}
         onChange={onInputChange}
         placeholder="Enter movie name"
       />
-      <button type="button">Search movie</button>
+      <button type="button" onClick={onSubmit}>
+        Search movie
+      </button>
     </form>
   );
 };
+<ToastContainer autoClose={4000} theme="colored" />;

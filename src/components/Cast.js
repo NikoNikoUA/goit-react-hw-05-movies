@@ -39,7 +39,7 @@ const Cast = () => {
 
   return (
     <div>
-      {!cast.length ? (
+      {cast === null ? (
         <p>There is not information on cast for this movie</p>
       ) : (
         <ul>
