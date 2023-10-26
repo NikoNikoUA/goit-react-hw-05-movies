@@ -39,9 +39,7 @@ const Cast = () => {
 
   return (
     <div>
-      {cast === null ? (
-        <p>There is not information on cast for this movie</p>
-      ) : (
+      {cast.length > 0 ? (
         <ul>
           {cast.map(actor => {
             const { name, character, profile_path } = actor;
@@ -63,6 +61,8 @@ const Cast = () => {
             );
           })}
         </ul>
+      ) : (
+        <p>There is not information on cast for this movie</p>
       )}
     </div>
   );

@@ -37,9 +37,7 @@ const Review = () => {
 
   return (
     <div>
-      {!reviews.length ? (
-        <p>There are no reviews for this movie</p>
-      ) : (
+      {reviews.length > 0 ? (
         <ul>
           {reviews.map(review => {
             const { content, author } = review;
@@ -51,6 +49,8 @@ const Review = () => {
             );
           })}
         </ul>
+      ) : (
+        <p>There are no reviews for this movie</p>
       )}
     </div>
   );

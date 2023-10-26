@@ -1,21 +1,20 @@
-import { ToastContainer, toast } from 'react-toastify';
-
-export const Form = ({ value, onChange, onSubmit }) => {
-  const onInputChange = event => {
-    const initialValue = event.target.value;
-    if (!initialValue) {
-      toast.error('Please enter something!');
-      return;
-    }
-    onChange(initialValue);
-  };
+// import { useSearchParams } from 'react-router-dom';
+export const Form = ({ value, onSubmit, onChange }) => {
+  // const onInputChange = event => {
+  //   const initialValue = event.target.value;
+  //   // if (!initialValue) {
+  //   //   return;
+  //   // }
+  //   // onChange(initialValue);
+  // };
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <form>
       <input
         type="text"
         value={value}
-        onChange={onInputChange}
+        onChange={event => onChange(event.target.value)}
         placeholder="Enter movie name"
       />
       <button type="button" onClick={onSubmit}>
@@ -24,4 +23,3 @@ export const Form = ({ value, onChange, onSubmit }) => {
     </form>
   );
 };
-<ToastContainer autoClose={4000} theme="colored" />;
