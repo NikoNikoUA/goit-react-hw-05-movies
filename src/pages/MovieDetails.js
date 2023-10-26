@@ -1,13 +1,11 @@
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Outlet, NavLink } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { fetchMoviesById } from '../utils/Api';
 
-const MovieDetails = data => {
+const MovieDetails = () => {
   const [, setLoading] = useState(false);
   const [, setError] = useState(false);
   const [movies, setMovies] = useState({});
-
-  console.log(movies);
 
   const { movieId } = useParams();
   const { title, poster_path, vote_average, overview, genres } = movies;
@@ -28,7 +26,6 @@ const MovieDetails = data => {
         const movieById = await fetchMoviesById(movieId, {
           signal: controller.signal,
         });
-        console.log(movieById);
         setMovies(movieById);
       } catch (error) {
         if (error.code !== 'ERR_CANCELED') {
@@ -51,6 +48,7 @@ const MovieDetails = data => {
         src={poster_path ? `${posterBasePath}${poster_path}` : defaultImg}
         alt={title}
         width="200"
+        loading="lazy"
       />
       <h2>{title}</h2>
       <p>User score: {Math.round(vote_average * 10)}%</p>
@@ -58,6 +56,15 @@ const MovieDetails = data => {
       <p>{overview}</p>
       <h3>Genres</h3>
       <p>{allGenres}</p>
+      <ul>
+        <li>
+          <NavLink to="cast">Cast</NavLink>
+        </li>
+        <li>
+          <NavLink to="review">Review</NavLink>
+        </li>
+      </ul>
+      <Outlet />
     </main>
   );
 };

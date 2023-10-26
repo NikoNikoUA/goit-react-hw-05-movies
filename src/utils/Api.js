@@ -29,9 +29,29 @@ export const fetchMoviesById = async (movieId, params = {}) => {
 
 // movies for Movies page
 
-export const fetchMoviesByQuery = async (movieId, query, params = {}) => {
+export const fetchMoviesByQuery = async (movieId, value, params = {}) => {
   const response = await axios.get(
-    `/search/movie/?${query}api_key=${API_KEY}`,
+    `/search/movie/?${value}api_key=${API_KEY}`,
+    params
+  );
+  return response.data;
+};
+
+// fetch for review
+
+export const fetchReview = async (movieId, params = {}) => {
+  const response = await axios.get(
+    `/movie/${movieId}/reviews?api_key=${API_KEY}`,
+    params
+  );
+  return response.data;
+};
+
+// fetch for cast
+
+export const fetchCast = async (movieId, params = {}) => {
+  const response = await axios.get(
+    `/movie/${movieId}/credits?api_key=${API_KEY}`,
     params
   );
   return response.data;
