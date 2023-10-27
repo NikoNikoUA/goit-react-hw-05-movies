@@ -1,10 +1,9 @@
-import { useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useSearchParams, useLocation, Link } from 'react-router-dom';
+import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchMoviesByQuery } from '../utils/Api';
-import { Form } from '../components/Form';
+import Form from '../components/Form';
 import MoviesList from 'components/MoviesList';
 
 const Movies = () => {
@@ -14,8 +13,9 @@ const Movies = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const value = searchParams.get('query') ?? '';
+  const location = useLocation();
 
-  const getMovies = () => {
+  const getMoviesByQuery = () => {
     const controller = new AbortController();
 
     async function getMovies() {
@@ -47,22 +47,23 @@ const Movies = () => {
 
   const onFormSubmit = event => {
     event.preventDefault();
-    if (!value) {
+    if (!value.trim()) {
       toast.error('Please enter something!');
       return;
     }
-    getMovies();
+    getMoviesByQuery();
     setSearchParams(value !== '' ? { query: value } : {});
-    event.target.reset();
   };
 
   return (
-    <>
+    <main>
+      <Link state={{ from: location }}></Link>
       <Form value={value} onChange={updateQuery} onSubmit={onFormSubmit} />
+      {movies.length === 0 && <p>No results found</p>}
       <MoviesList movies={movies} />
-    </>
+      <ToastContainer autoClose={4000} theme="colored" />
+    </main>
   );
 };
-<ToastContainer autoClose={4000} theme="colored" />;
 
 export default Movies;

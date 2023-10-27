@@ -1,25 +1,20 @@
-// import { useSearchParams } from 'react-router-dom';
-export const Form = ({ value, onSubmit, onChange }) => {
-  // const onInputChange = event => {
-  //   const initialValue = event.target.value;
-  //   // if (!initialValue) {
-  //   //   return;
-  //   // }
-  //   // onChange(initialValue);
-  // };
-  // const [searchParams, setSearchParams] = useSearchParams();
-
+const Form = ({ value, onSubmit, onChange }) => {
   return (
     <form>
-      <input
-        type="text"
-        value={value}
-        onChange={event => onChange(event.target.value)}
-        placeholder="Enter movie name"
-      />
-      <button type="button" onClick={onSubmit}>
+      <label>
+        Movie search
+        <input
+          type="text"
+          value={value}
+          onChange={event => onChange(event.target.value)}
+          placeholder="Enter movie name"
+        />
+      </label>
+      <button type="submit" onClick={onSubmit}>
         Search movie
       </button>
     </form>
   );
 };
+
+export default Form;

@@ -1,6 +1,8 @@
 import { useParams, useLocation, Outlet, NavLink } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { fetchMoviesById } from '../utils/Api';
+import Loader from '../components/Loader';
+import BackLink from 'components/BackLink';
 
 const MovieDetails = () => {
   const [, setLoading] = useState(false);
@@ -14,8 +16,8 @@ const MovieDetails = () => {
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   const posterBasePath = 'https://image.tmdb.org/t/p/w500';
 
-  //   const location = useLocation();
-  //   const backLinkHref = location.state?.from ?? '/moviesList';
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/moviesList';
   useEffect(() => {
     const controller = new AbortController();
 
@@ -44,6 +46,7 @@ const MovieDetails = () => {
 
   return (
     <main>
+      <BackLink to={backLinkHref} />
       <img
         src={poster_path ? `${posterBasePath}${poster_path}` : defaultImg}
         alt={title}
@@ -64,7 +67,9 @@ const MovieDetails = () => {
           <NavLink to="review">Review</NavLink>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </main>
   );
 };
