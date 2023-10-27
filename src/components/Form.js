@@ -2,7 +2,7 @@ const Form = ({ value, onSubmit, onChange }) => {
   return (
     <form>
       <label>
-        Movie search
+        Search by name
         <input
           type="text"
           value={value}

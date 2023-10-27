@@ -1,5 +1,5 @@
 import { useParams, useLocation, Outlet, NavLink } from 'react-router-dom';
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense, useRef } from 'react';
 import { fetchMoviesById } from '../utils/Api';
 import Loader from '../components/Loader';
 import BackLink from 'components/BackLink';
@@ -17,7 +17,8 @@ const MovieDetails = () => {
   const posterBasePath = 'https://image.tmdb.org/t/p/w500';
 
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/moviesList';
+  const backLinkHref = useRef(location.state?.from ?? '/Movies');
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -46,7 +47,7 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <BackLink to={backLinkHref} />
+      <BackLink to={backLinkHref.current} />
       <img
         src={poster_path ? `${posterBasePath}${poster_path}` : defaultImg}
         alt={title}

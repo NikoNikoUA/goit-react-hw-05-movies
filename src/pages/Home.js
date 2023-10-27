@@ -35,7 +35,27 @@ const Home = () => {
 
   return (
     <>
-      <h1>Trending movies</h1>
+      <div
+        style={{
+          maxWidth: '1600px',
+          marginTop: 0,
+          marginBottom: 0,
+          marginRight: 'auto',
+          marginLeft: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: '36px',
+            color: 'white',
+            textShadow: '1px 1px 1px black',
+          }}
+        >
+          Trending movies
+        </h1>
+      </div>
       <MoviesList movies={movies} />
     </>
   );
