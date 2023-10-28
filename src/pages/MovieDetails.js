@@ -1,12 +1,14 @@
 import { useParams, useLocation, Outlet, NavLink } from 'react-router-dom';
 import React, { useEffect, useState, Suspense, useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
 import { fetchMoviesById } from '../utils/Api';
 import Loader from '../components/Loader';
 import BackLink from 'components/BackLink';
 
 const MovieDetails = () => {
-  const [, setLoading] = useState(false);
-  const [, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [movies, setMovies] = useState({});
 
   const { movieId } = useParams();
@@ -47,6 +49,9 @@ const MovieDetails = () => {
 
   return (
     <main>
+      {loading && <Loader />}
+      {error &&
+        toast.error(`Whoops, something went wrong. Try reloading the page`)}
       <BackLink to={backLinkHref.current} />
       <img
         src={poster_path ? `${posterBasePath}${poster_path}` : defaultImg}
@@ -71,6 +76,7 @@ const MovieDetails = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
+      <ToastContainer autoClose={4000} theme="colored" />
     </main>
   );
 };

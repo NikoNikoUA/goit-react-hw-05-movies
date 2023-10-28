@@ -1,10 +1,12 @@
 import { fetchTrandingMovies } from '../utils/Api';
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import MoviesList from '../components/MoviesList';
+import Loader from '../components/Loader';
 
 const Home = () => {
-  const [, setLoading] = useState(false);
-  const [, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
   console.log(movies);
   useEffect(() => {
@@ -56,7 +58,11 @@ const Home = () => {
           Trending movies
         </h1>
       </div>
+      {loading && <Loader />}
+      {error &&
+        toast.error(`Whoops, something went wrong. Try reloading the page`)}
       <MoviesList movies={movies} />
+      <ToastContainer autoClose={4000} theme="colored" />
     </>
   );
 };

@@ -28,7 +28,7 @@ export const Link = styled(NavLink)`
   color: black;
   font-weight: 500;
   font-size: 24px;
-  transition: color 250ms ease, background-color 250ms ease, border 250ms ease;
+  transition: all 250ms ease;
 
   &:hover {
     color: blue;
@@ -39,7 +39,7 @@ export const Link = styled(NavLink)`
     background-color: blue;
 
     &:hover {
-      border: 2px solid blue;
+      border: 1px solid blue;
       background-color: transparent;
       color: blue;
     }

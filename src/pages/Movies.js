@@ -5,10 +5,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { fetchMoviesByQuery } from '../utils/Api';
 import Form from '../components/Form';
 import MoviesList from 'components/MoviesList';
+import Loader from '../components/Loader';
 
 const Movies = () => {
-  const [, setLoading] = useState(false);
-  const [, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -38,24 +39,31 @@ const Movies = () => {
     return () => {
       controller.abort();
     };
-  });
+  }, [value]);
 
   const updateQuery = value => {
     setSearchParams(value !== '' ? { query: value } : {});
   };
 
-  const onFormSubmit = event => {
-    event.preventDefault();
-    if (!value.trim()) {
-      toast.error('Please enter something!');
-      return;
-    }
-    setSearchParams(value !== '' ? { query: value } : {});
-  };
+  // const onFormSubmit = event => {
+  //   event.preventDefault();
+  //   if (!value.trim()) {
+  //     toast.error('Please enter something!');
+  //     return;
+  //   }
+  //   setSearchParams(value !== '' ? { query: value } : {});
+  // };
 
   return (
     <main>
-      <Form value={value} onChange={updateQuery} onSubmit={onFormSubmit} />
+      {loading && <Loader />}
+      {error &&
+        toast.error(`Whoops, something went wrong. Try reloading the page`)}
+      <Form
+        value={value}
+        onChange={updateQuery}
+        // onSubmit={onFormSubmit}
+      />
       {/* {movies.length === 0 && <p>No results found</p>} */}
       <MoviesList movies={movies} />
       <ToastContainer autoClose={4000} theme="colored" />

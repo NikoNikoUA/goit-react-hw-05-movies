@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
+import { GoBackBtn, Container } from './BackLink.styled';
 
 const BackLink = ({ to, children }) => {
   return (
-    <Link to={to}>
-      <button>Go back</button>
-      {children}
-    </Link>
+    <Container>
+      <Link to={to}>
+        <GoBackBtn>Go back</GoBackBtn>
+        {children}
+      </Link>
+    </Container>
   );
 };
 export default BackLink;
