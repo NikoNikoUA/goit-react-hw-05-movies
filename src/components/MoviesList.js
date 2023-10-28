@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Container, List, ListItem, Title } from './MoviesList.styled';
+import { List, ListItem, Title } from './MoviesList.styled';
 
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
@@ -9,7 +9,7 @@ const MoviesList = ({ movies }) => {
   const location = useLocation();
   return (
     <section>
-      <Container>
+      <>
         <List>
           {movies.map(({ id, title, poster_path }) => (
             <ListItem key={id}>
@@ -27,7 +27,7 @@ const MoviesList = ({ movies }) => {
             </ListItem>
           ))}
         </List>
-      </Container>
+      </>
     </section>
   );
 };

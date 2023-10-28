@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 import SharedLayout from './SharedLayout';
+import { Layout } from './Layout.styled';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
@@ -11,17 +12,19 @@ const NotFound = lazy(() => import('../components/NotFound'));
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="movies" element={<Movies />} />
-        <Route path="movies/:movieId" element={<MovieDetails />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="review" element={<Review />} />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="review" element={<Review />} />
+          </Route>
+          <Route path="notFound" element={<NotFound />} />
         </Route>
-        <Route path="notFound" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </Layout>
   );
 };
 

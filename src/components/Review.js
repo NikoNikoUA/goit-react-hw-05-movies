@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReview } from '../utils/Api';
+import { Container, Author, Text } from './Review.styled';
 
 const Review = () => {
   const [, setLoading] = useState(false);
@@ -36,15 +37,15 @@ const Review = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <Container>
       {reviews.length > 0 ? (
         <ul>
           {reviews.map(review => {
             const { content, author } = review;
             return (
               <li key={author}>
-                <h2>{author}</h2>
-                <p>{content}</p>
+                <Author>{author}</Author>
+                <Text>{content}</Text>
               </li>
             );
           })}
@@ -52,7 +53,7 @@ const Review = () => {
       ) : (
         <p>There are no reviews for this movie</p>
       )}
-    </div>
+    </Container>
   );
 };
 

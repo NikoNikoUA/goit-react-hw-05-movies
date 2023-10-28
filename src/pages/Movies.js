@@ -42,28 +42,21 @@ const Movies = () => {
   }, [value]);
 
   const updateQuery = value => {
+    // searchParams.set('query', value);
+    // setSearchParams(searchParams);
     setSearchParams(value !== '' ? { query: value } : {});
   };
 
-  // const onFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (!value.trim()) {
-  //     toast.error('Please enter something!');
-  //     return;
-  //   }
-  //   setSearchParams(value !== '' ? { query: value } : {});
-  // };
+  const onSubmit = value => {
+    updateQuery(value);
+  };
 
   return (
     <main>
       {loading && <Loader />}
       {error &&
         toast.error(`Whoops, something went wrong. Try reloading the page`)}
-      <Form
-        value={value}
-        onChange={updateQuery}
-        // onSubmit={onFormSubmit}
-      />
+      <Form value={value} onChange={updateQuery} onSubmit={onSubmit} />
       {/* {movies.length === 0 && <p>No results found</p>} */}
       <MoviesList movies={movies} />
       <ToastContainer autoClose={4000} theme="colored" />

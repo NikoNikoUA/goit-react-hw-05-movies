@@ -53,6 +53,7 @@ const Home = () => {
             fontSize: '36px',
             color: 'white',
             textShadow: '1px 1px 1px black',
+            marginBottom: '20px',
           }}
         >
           Trending movies
