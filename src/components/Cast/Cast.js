@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCast } from '../utils/Api';
+import { fetchCast } from '../../utils/Api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { List, ListItem, Heading, CharacterInfo } from './Cast.styled';
+import Loader from '../Loader/Loader';
 
 const Cast = () => {
-  const [, setLoading] = useState(false);
-  const [, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [cast, setCast] = useState([]);
 
   const { movieId } = useParams();
@@ -40,6 +43,9 @@ const Cast = () => {
 
   return (
     <div>
+      {loading && <Loader />}
+      {error &&
+        toast.error(`Whoops, something went wrong. Try reloading the page`)}
       {cast.length > 0 ? (
         <List>
           {cast.map(actor => {
@@ -65,6 +71,7 @@ const Cast = () => {
       ) : (
         <p>There is not information on cast for this movie</p>
       )}
+      <ToastContainer autoClose={4000} theme="colored" />
     </div>
   );
 };

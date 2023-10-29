@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchReview } from '../utils/Api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { fetchReview } from '../../utils/Api';
 import { Container, Author, Text } from './Review.styled';
+import Loader from '../Loader/Loader';
 
 const Review = () => {
-  const [, setLoading] = useState(false);
-  const [, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [reviews, setReview] = useState([]);
   console.log(reviews);
 
@@ -38,6 +41,9 @@ const Review = () => {
 
   return (
     <Container>
+      {loading && <Loader />}
+      {error &&
+        toast.error(`Whoops, something went wrong. Try reloading the page`)}
       {reviews.length > 0 ? (
         <ul>
           {reviews.map(review => {
@@ -53,6 +59,7 @@ const Review = () => {
       ) : (
         <p>There are no reviews for this movie</p>
       )}
+      <ToastContainer autoClose={4000} theme="colored" />
     </Container>
   );
 };

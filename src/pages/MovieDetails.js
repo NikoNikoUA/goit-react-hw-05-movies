@@ -3,14 +3,14 @@ import React, { useEffect, useState, Suspense, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { fetchMoviesById } from '../utils/Api';
-import Loader from '../components/Loader';
-import BackLink from 'components/BackLink';
-import MovieDetailsCard from 'components/MovieDeatailsCard';
+import Loader from '../components/Loader/Loader';
+import BackLink from 'components/BackLink/BackLink';
+import MovieDetailsCard from 'components/MovieDetailsCard/MovieDeatailsCard';
 
 const MovieDetails = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState(null);
 
   const { movieId } = useParams();
 
@@ -50,7 +50,7 @@ const MovieDetails = () => {
         {error &&
           toast.error(`Whoops, something went wrong. Try reloading the page`)}
         <BackLink to={backLinkHref.current} />
-        <MovieDetailsCard movies={movies} />
+        {movies && <MovieDetailsCard movies={movies} />}
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

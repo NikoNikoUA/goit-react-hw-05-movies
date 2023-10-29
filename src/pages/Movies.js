@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchMoviesByQuery } from '../utils/Api';
-import Form from '../components/Form';
-import MoviesList from 'components/MoviesList';
-import Loader from '../components/Loader';
+import Form from '../components/Form/Form';
+import MoviesList from 'components/MoviesList/MoviesList';
+import Loader from '../components/Loader/Loader';
 
 const Movies = () => {
   const [loading, setLoading] = useState(false);
@@ -55,9 +55,7 @@ const Movies = () => {
       {error &&
         toast.error(`Whoops, something went wrong. Try reloading the page`)}
       <Form onSubmit={onSubmit} />
-      {movies.length === 0 && (
-        <p style={{ fontSize: '30px' }}>No results found</p>
-      )}
+      {movies.length === 0 && <p style={{ fontSize: '30px' }}>No results</p>}
       <MoviesList movies={movies} />
       <ToastContainer autoClose={4000} theme="colored" />
     </main>

@@ -1,8 +1,8 @@
 import { fetchTrandingMovies } from '../utils/Api';
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import MoviesList from '../components/MoviesList';
-import Loader from '../components/Loader';
+import MoviesList from '../components/MoviesList/MoviesList';
+import Loader from '../components/Loader/Loader';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
