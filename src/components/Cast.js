@@ -45,7 +45,7 @@ const Cast = () => {
           {cast.map(actor => {
             const { name, character, profile_path } = actor;
             return (
-              <ListItem>
+              <ListItem key={name}>
                 <img
                   src={
                     profile_path

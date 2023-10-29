@@ -11,18 +11,19 @@ const Movies = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
-
   const [searchParams, setSearchParams] = useSearchParams();
-  const value = searchParams.get('query') ?? '';
+  const query = searchParams.get('query') ?? '';
 
   useEffect(() => {
     const controller = new AbortController();
-
+    if (!query) {
+      return;
+    }
     async function getMovies() {
       try {
         setLoading(true);
         setError(false);
-        const fetchedMovies = await fetchMoviesByQuery(value, {
+        const fetchedMovies = await fetchMoviesByQuery(query, {
           signal: controller.signal,
         });
 
@@ -39,16 +40,13 @@ const Movies = () => {
     return () => {
       controller.abort();
     };
-  }, [value]);
-
-  const updateQuery = value => {
-    // searchParams.set('query', value);
-    // setSearchParams(searchParams);
-    setSearchParams(value !== '' ? { query: value } : {});
-  };
+  }, [query]);
 
   const onSubmit = value => {
-    updateQuery(value);
+    if (query === value) {
+      return toast.info('Please search something else');
+    }
+    setSearchParams(value !== '' ? { query: value } : {});
   };
 
   return (
@@ -56,8 +54,10 @@ const Movies = () => {
       {loading && <Loader />}
       {error &&
         toast.error(`Whoops, something went wrong. Try reloading the page`)}
-      <Form value={value} onChange={updateQuery} onSubmit={onSubmit} />
-      {/* {movies.length === 0 && <p>No results found</p>} */}
+      <Form onSubmit={onSubmit} />
+      {movies.length === 0 && (
+        <p style={{ fontSize: '30px' }}>No results found</p>
+      )}
       <MoviesList movies={movies} />
       <ToastContainer autoClose={4000} theme="colored" />
     </main>

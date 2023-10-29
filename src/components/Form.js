@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-// import { useSearchParams } from 'react-router-dom';
 import { HiMiniMagnifyingGlassCircle } from 'react-icons/hi2';
 import {
   Container,
@@ -9,13 +9,14 @@ import {
   Input,
 } from './Form.styled';
 
-const Form = ({ value, onSubmit, onChange }) => {
+const Form = ({ onSubmit }) => {
+  const [value, setValue] = useState('');
+
   const onFormSubmit = event => {
     event.preventDefault();
-    const InputValue = event.target.elements.query.value;
-    const value = InputValue.toLowerCase();
-    onSubmit(value);
-    if (!value.trim()) {
+    const inputValue = value.toLowerCase();
+    onSubmit(inputValue);
+    if (!inputValue.trim()) {
       toast.error('Please enter something!');
       return;
     }
@@ -32,7 +33,7 @@ const Form = ({ value, onSubmit, onChange }) => {
               name="query"
               value={value}
               autoFocus
-              onChange={event => onChange(event.target.value)}
+              onChange={event => setValue(event.target.value)}
               placeholder="Enter movie name"
             />
           </Label>
