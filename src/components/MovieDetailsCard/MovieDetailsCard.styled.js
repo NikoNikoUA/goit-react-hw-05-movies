@@ -22,7 +22,7 @@ export const InfoContainer = styled.div`
 export const Title = styled.h2`
   color: white;
   font-size: 40px;
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 
 export const ListItem = styled.li`

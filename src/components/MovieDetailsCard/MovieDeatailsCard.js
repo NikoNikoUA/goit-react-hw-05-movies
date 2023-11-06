@@ -30,7 +30,9 @@ const MovieDetailsCard = ({ movies }) => {
           loading="lazy"
         />
         <InfoContainer>
-          <Title>Title: {title}</Title>
+          <Title>
+            Title: <b>{title}</b>
+          </Title>
           <ul>
             <ListItem>
               <Heading>Release date:</Heading>
