@@ -71,10 +71,10 @@ export const Toggle = styled.div`
   height: 30px;
   width: 55px;
   border-radius: 25px;
-  background-color: blueviolet;
+  background-color: black;
   transition: 0.3s;
   &.active {
-    background: black;
+    background: blueviolet;
     > ${ToggleBtn} {
       left: 30px;
     }
