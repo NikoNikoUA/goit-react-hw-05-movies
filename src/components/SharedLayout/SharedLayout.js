@@ -31,7 +31,7 @@ const SharedLayout = () => {
             <Link to="/movies">Movies</Link>
           </ul>
         </nav>
-        <ToggleContainer>
+        <ToggleContainer title="Change theme">
           <Toggle
             className={toggleActive ? 'active' : ''}
             onClick={handleToggleClick}
