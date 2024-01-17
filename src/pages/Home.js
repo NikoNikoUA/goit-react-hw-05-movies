@@ -8,7 +8,10 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
-  console.log(movies);
+  const [loadMore, setLoadMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hover, setHover] = useState(false);
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -16,11 +19,12 @@ const Home = () => {
       try {
         setLoading(true);
         setError(false);
-        const fetchedMoviesHome = await fetchTrandingMovies({
+        const fetchedMoviesHome = await fetchTrandingMovies(page, {
           signal: controller.signal,
         });
 
-        setMovies(fetchedMoviesHome.results);
+        setMovies(prevState => [...prevState, ...fetchedMoviesHome.results]);
+        setLoadMore(page < fetchedMoviesHome.total_pages);
       } catch (error) {
         if (error.code !== 'ERR_CANCELED') {
           setError(true);
@@ -33,7 +37,28 @@ const Home = () => {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [page]);
+
+  const clickLoadMore = () => {
+    setPage(prevState => prevState + 1);
+    setLoadMore(true);
+  };
+
+  const buttonStyles = {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderRadius: '4px',
+    backgroundColor: 'orange',
+    padding: '15px 20px',
+    color: 'black',
+    fontWeight: '500',
+    fontSize: '24px',
+    transition: 'all 250ms ease',
+    cursor: 'pointer',
+    marginTop: '20px',
+    border: 'none',
+  };
 
   return (
     <>
@@ -60,10 +85,26 @@ const Home = () => {
         </h1>
       </div>
       {loading && <Loader />}
+
       {error &&
         toast.error(`Whoops, something went wrong. Try reloading the page`)}
       <MoviesList movies={movies} />
       <ToastContainer autoClose={4000} theme="colored" />
+      {loadMore && (
+        <button
+          style={{
+            ...buttonStyles,
+            backgroundColor: hover ? 'transparent' : 'orange',
+            color: hover ? 'orange' : 'white',
+            border: hover ? '1px solid white' : 'none',
+          }}
+          onClick={clickLoadMore}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          Load more
+        </button>
+      )}
     </>
   );
 };

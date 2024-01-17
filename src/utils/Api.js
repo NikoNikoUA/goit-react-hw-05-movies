@@ -9,9 +9,9 @@ axios.defaults.params = {
 
 // trending movies search for Home page
 
-export const fetchTrandingMovies = async (params = {}) => {
+export const fetchTrandingMovies = async (page, params = {}) => {
   const response = await axios.get(
-    `/trending/movie/day?api_key=${API_KEY}`,
+    `/trending/movie/day?page=${page}&api_key=${API_KEY}`,
     params
   );
   return response.data;
@@ -29,9 +29,9 @@ export const fetchMoviesById = async (movieId, params = {}) => {
 
 // movies for Movies page
 
-export const fetchMoviesByQuery = async (value, params = {}) => {
+export const fetchMoviesByQuery = async (value, page, params = {}) => {
   const response = await axios.get(
-    `/search/movie?query=${value}&api_key=${API_KEY}`,
+    `/search/movie?query=${value}&page=${page}&api_key=${API_KEY}`,
     params
   );
   return response.data;
