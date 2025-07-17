@@ -26,7 +26,7 @@ export const ListItem = styled.li`
   margin-bottom: 20px;
   box-shadow: 0px 0px 4px black;
   padding: 15px;
-  width: 80px;
+  width: 60px;
   height: 265px;
 
   @media screen and (min-width: 1200px) {
