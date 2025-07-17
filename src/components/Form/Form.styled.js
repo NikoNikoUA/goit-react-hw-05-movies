@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Input = styled.input`
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   max-width: 600px;
   overflow: hidden;
   border: none;
