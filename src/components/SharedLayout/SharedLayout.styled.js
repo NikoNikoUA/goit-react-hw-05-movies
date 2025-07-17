@@ -43,13 +43,26 @@ export const Link = styled(NavLink)`
 `;
 
 export const ToggleContainer = styled.div`
+
   position: absolute;
-  right: 5%;
+  right: 20%;
   top: 10%;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (min-width: 426px) {
+    right: 15%;
+  }
+
+  @media screen and (min-width: 768px)  {
+    right: 10%;
+  }
+
+  @media screen and (min-width: 1230px){
+    right: 5%;
+  }
 `;
 
 export const ToggleBtn = styled.div`

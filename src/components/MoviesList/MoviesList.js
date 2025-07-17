@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { List, ListItem, Title } from './MoviesList.styled';
+import { List, ListItem, Title, Img } from './MoviesList.styled';
 
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
@@ -14,7 +14,7 @@ const MoviesList = ({ movies }) => {
           {movies.map(({ id, title, poster_path }) => (
             <ListItem key={id}>
               <Link to={`/movies/${id}`} state={{ from: location }}>
-                <img
+                <Img
                   src={
                     poster_path ? `${posterBasePath}${poster_path}` : defaultImg
                   }
