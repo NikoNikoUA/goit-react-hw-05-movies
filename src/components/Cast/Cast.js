@@ -59,7 +59,7 @@ const Cast = () => {
                       : defaultImg
                   }
                   alt={name}
-                  width="100"
+                  width="100%"
                   loading="lazy"
                 />
                 <Heading>{name}</Heading>
