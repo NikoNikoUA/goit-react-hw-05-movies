@@ -49,7 +49,7 @@ export const Info = styled.p`
 
 export const Img = styled.img`
   @media screen and (max-width: 767px){
-    width: 300px;
+    width: 250px;
  }
   `
 
