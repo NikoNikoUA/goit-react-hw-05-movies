@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 export const Input = styled.input`
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 4px;
   max-width: 600px;
+  width: 250px;
   overflow: hidden;
   border: none;
   height: 40px;
@@ -40,11 +38,15 @@ export const Label = styled.label`
 `;
 
 export const InputContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: flex-end;
 `;
 
 export const SubmitBtn = styled.button`
+  position: absolute;
+  right: 0;
+  bottom: 0;
   border: none;
   height: 50px;
   width: 50px;

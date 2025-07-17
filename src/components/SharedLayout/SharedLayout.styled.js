@@ -46,7 +46,7 @@ export const ToggleContainer = styled.div`
 
   position: absolute;
   right: 20%;
-  top: 10%;
+  top: -10px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -54,6 +54,7 @@ export const ToggleContainer = styled.div`
 
   @media screen and (min-width: 426px) {
     right: 15%;
+    top: 10%;
   }
 
   @media screen and (min-width: 768px)  {
