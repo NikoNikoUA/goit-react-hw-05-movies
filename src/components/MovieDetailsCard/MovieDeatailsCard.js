@@ -10,6 +10,7 @@ import {
   AdditionalInfo,
   AddInfoList,
   NewLink,
+  Img
 } from './MovieDetailsCard.styled';
 
 const MovieDetailsCard = ({ movies }) => {
@@ -23,7 +24,7 @@ const MovieDetailsCard = ({ movies }) => {
   return (
     <>
       <Container>
-        <img
+        <Img
           src={poster_path ? `${posterBasePath}${poster_path}` : defaultImg}
           alt={title}
           width="400"

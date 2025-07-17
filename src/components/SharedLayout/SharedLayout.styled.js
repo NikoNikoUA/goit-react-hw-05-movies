@@ -92,4 +92,8 @@ export const Toggle = styled.div`
       left: 30px;
     }
   }
+
+  @media screen and (max-width: 419px) {
+    left: 10px;
+  }
 `;

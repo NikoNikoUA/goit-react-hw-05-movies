@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Input = styled.input`
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  width: 600px;
+  max-width: 600px;
   overflow: hidden;
   border: none;
   height: 40px;
@@ -11,6 +11,14 @@ export const Input = styled.input`
   outline: none;
   padding: 5px 8px;
   margin-bottom: 40px;
+
+  @media screen and (min-width: 600px) {
+    width: 400px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 600px;
+  }
 `;
 
 export const Container = styled.div`

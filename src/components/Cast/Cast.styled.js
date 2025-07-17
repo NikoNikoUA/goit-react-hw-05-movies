@@ -4,13 +4,16 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  width: 1000px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   border: 1px solid white;
   border-radius: 8px;
   padding: 40px 15px;
+
+  @media screen and (min-width: 1200px) {
+    width: 1000px;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -23,8 +26,12 @@ export const ListItem = styled.li`
   margin-bottom: 20px;
   box-shadow: 0px 0px 4px black;
   padding: 15px;
-  width: 150px;
+  width: 100px;
   height: 265px;
+
+  @media screen and (min-width: 1200px) {
+    width: 150px;
+  }
 `;
 
 export const Heading = styled.h3`
