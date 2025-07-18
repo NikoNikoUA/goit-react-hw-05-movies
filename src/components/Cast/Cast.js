@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchCast } from '../../utils/Api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { List, ListItem, Heading, CharacterInfo } from './Cast.styled';
+import { List, ListItem, Heading, CharacterInfo, Img } from './Cast.styled';
 import Loader from '../Loader/Loader';
 
 const Cast = () => {
@@ -52,14 +52,13 @@ const Cast = () => {
             const { name, character, profile_path } = actor;
             return (
               <ListItem key={name}>
-                <img
+                <Img
                   src={
                     profile_path
                       ? `${posterBasePath}${profile_path}`
                       : defaultImg
                   }
                   alt={name}
-                  width="100%"
                   loading="lazy"
                 />
                 <Heading>{name}</Heading>

@@ -27,7 +27,13 @@ export const ListItem = styled.li`
   box-shadow: 0px 0px 4px black;
   padding: 15px;
   width: 150px;
-  height: 265px;
+  height: auto;
+
+  @media screen and (min-width: 1200px) {
+    width: 100px;
+    height: 265px;
+  }
+
 
   @media screen and (min-width: 1200px) {
     width: 150px;
@@ -43,3 +49,10 @@ export const CharacterInfo = styled.p`
   color: orange;
   text-align: center;
 `;
+
+export const Img = styled.img`
+  width: 100%;
+  @media screen and (min-width: 1200px) {
+    width: 100px;
+  }
+`
