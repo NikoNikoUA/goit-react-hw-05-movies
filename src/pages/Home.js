@@ -43,7 +43,7 @@ const Home = () => {
     return () => {
       controller.abort();
     };
-  }, [page]);
+  }, [page, loadedPage]);
 
   useEffect(() => {
     if (movies.length === 0 || loadedPage === 0) return;
