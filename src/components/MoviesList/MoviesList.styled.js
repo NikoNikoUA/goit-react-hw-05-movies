@@ -32,6 +32,16 @@ export const ListItem = styled.li`
   position: relative;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  @media screen and (min-width: 768px) {
+    width: calc(100% / 2 - 15px);
+  }
+  @media screen and (min-width: 1024px) {
+    width: calc(100% / 3 - 15px);
+  }
+  @media screen and (min-width: 1440px) {
+    width: calc(100% / 5 - 15px);
+  }
+  
 
   object-fit: cover;
   overflow: hidden;

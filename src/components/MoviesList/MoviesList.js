@@ -19,8 +19,9 @@ const MoviesList = ({ movies }) => {
                     poster_path ? `${posterBasePath}${poster_path}` : defaultImg
                   }
                   alt={title}
-                  width="200"
+                  width=""
                   loading="lazy"
+                  style={{width: '100%'}}
                 />
                 <Title>{title}</Title>
               </Link>
