@@ -13,7 +13,7 @@ export const ScrollTop = () => {
     window.addEventListener("scroll", toggleVisible, {passive: true});
 
     return () => {
-       window.addEventListener("scroll", toggleVisible);
+       window.removeEventListener("scroll", toggleVisible);
     }
   }, [])
 
