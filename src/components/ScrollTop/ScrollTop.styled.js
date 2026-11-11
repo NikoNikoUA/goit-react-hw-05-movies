@@ -11,6 +11,9 @@ export const Button = styled.div`
   cursor: pointer;
   color: orange;
 
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
+
   transition: all 250ms ease;
 
 

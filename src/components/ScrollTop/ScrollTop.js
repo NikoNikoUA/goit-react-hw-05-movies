@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ScrollTop.styled";
 import { FaArrowCircleUp } from "react-icons/fa";
 
 export const ScrollTop = () => {
   const [visible, setVisible] = useState(false);
 
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-      setVisible(true);
-    } else if (scrolled <= 300) {
-      setVisible(false);
+  useEffect(() => {
+    const toggleVisible = () => {
+      setVisible(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", toggleVisible, {passive: true});
+
+    return () => {
+       window.addEventListener("scroll", toggleVisible);
     }
-  };
+  }, [])
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -21,14 +24,12 @@ export const ScrollTop = () => {
     });
   };
 
-  window.addEventListener("scroll", toggleVisible);
-
+  
   return (
-    <Button>
-      <FaArrowCircleUp
-        onClick={scrollToTop}
-        style={{ display: visible ? "inline" : "none" }}
-      />
+    <Button 
+      onClick={scrollToTop}
+      $visible={visible}>
+      <FaArrowCircleUp/>
     </Button>
   );
 };
